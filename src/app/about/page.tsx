@@ -63,6 +63,7 @@ export default function AboutPage() {
                                     alt="Our Team"
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
                                 />
                                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity" />
                             </div>
@@ -126,6 +127,7 @@ export default function AboutPage() {
                                             alt={member.name}
                                             fill
                                             className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                                            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                                         />
                                         <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity">
                                             <h4 className="font-bold text-lg">{member.name}</h4>

@@ -57,28 +57,41 @@ export default function BackgroundEffect() {
 
             {/* Subtle Floating Blobs */}
             <div className="absolute inset-0">
-                {[...Array(5)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        animate={{
-                            y: [0, -30, 0],
-                            opacity: [0.1, 0.3, 0.1],
-                        }}
-                        transition={{
-                            duration: 5 + i * 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: i * 1,
-                        }}
-                        className="absolute rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
-                        style={{
-                            width: `${Math.random() * 100 + 50}px`,
-                            height: `${Math.random() * 100 + 50}px`,
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                        }}
-                    />
-                ))}
+                {[...Array(5)].map((_, i) => {
+                    // Use deterministic values based on index to avoid hydration mismatch
+                    const sizes = [150, 120, 180, 140, 160];
+                    const positions = [
+                        { left: '10%', top: '15%' },
+                        { left: '70%', top: '25%' },
+                        { left: '40%', top: '60%' },
+                        { left: '80%', top: '70%' },
+                        { left: '20%', top: '80%' }
+                    ];
+
+                    return (
+                        <motion.div
+                            key={i}
+                            animate={{
+                                y: [0, -30, 0],
+                                opacity: [0.1, 0.2, 0.1],
+                                rotate: [0, 5, 0],
+                            }}
+                            transition={{
+                                duration: 8 + i * 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: i * 1,
+                            }}
+                            className="absolute rounded-[40px] bg-white/5 border border-white/10 backdrop-blur-sm"
+                            style={{
+                                width: `${sizes[i]}px`,
+                                height: `${sizes[i] * 0.6}px`,
+                                left: positions[i].left,
+                                top: positions[i].top,
+                            }}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

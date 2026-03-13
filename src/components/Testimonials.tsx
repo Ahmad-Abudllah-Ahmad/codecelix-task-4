@@ -56,7 +56,7 @@ export default function Testimonials() {
                                 </p>
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 group-hover:scale-110 transition-transform relative">
-                                        <Image src={item.image} alt={item.name} fill className="object-cover" />
+                                        <Image src={item.image} alt={item.name} fill className="object-cover" sizes="48px" />
                                     </div>
                                     <div>
                                         <h4 className="font-bold">{item.name}</h4>
