@@ -2,7 +2,7 @@
 
 A state-of-the-art digital agency website built with **Next.js 15**, optimized for "lightning-fast" performance and ultra-smooth animations. This project features advanced GPU-accelerated rendering, custom smooth scrolling, and premium "blur-to-reveal" text effects.
 
-## 🚀 Key Features
+## Key Features
 
 - **Lightning Fast Performance**: Achieved 60 FPS scrolling and optimized animation cycles.
 - **GPU-Accelerated Rendering**: Extensive use of `will-change` and hardware promotion for buttery-smooth transitions.
@@ -12,7 +12,7 @@ A state-of-the-art digital agency website built with **Next.js 15**, optimized f
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 The following diagram illustrates how the core technologies integrate to deliver a high-performance user experience.
 
@@ -30,7 +30,7 @@ graph TD
 
 ---
 
-## ⚡ Performance Optimization Logic
+## Performance Optimization Logic
 
 This flow shows how we identified and resolved performance bottlenecks to achieve lag-free scrolling.
 
@@ -46,7 +46,7 @@ flowchart LR
 
 ---
 
-## 🧭 User Interaction Journey
+## User Interaction Journey
 
 This diagram maps the seamless transition from the landing phase to active engagement.
 
@@ -63,7 +63,7 @@ graph LR
 
 ---
 
-## 🎭 Animation Workflow (Blur-to-Reveal)
+## Animation Workflow (Blur-to-Reveal)
 
 Each text element follows this highly optimized reveal pipeline.
 
@@ -82,7 +82,7 @@ sequenceDiagram
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Technology | Purpose | Key Benefit |
 | :--- | :--- | :--- |
@@ -94,7 +94,7 @@ sequenceDiagram
 
 ---
 
-## 📊 Optimization Results
+## Optimization Results
 
 | Metric | Before Optimization | After Optimization | Improvement |
 | :--- | :--- | :--- | :--- |
@@ -105,7 +105,7 @@ sequenceDiagram
 
 ---
 
-## 📱 Responsive Matrix
+## Responsive Matrix
 
 | Device | Header Behavior | Hero Scaling | Interaction |
 | :--- | :--- | :--- | :--- |
@@ -115,7 +115,7 @@ sequenceDiagram
 
 ---
 
-## 📦 Getting Started
+## Getting Started
 
 ### Installation
 
@@ -133,7 +133,7 @@ Open [http://localhost:3001](http://localhost:3001) with your browser to see the
 
 ---
 
-## 📝 Performance Notes
+## Performance Notes
 
 - **Filters**: Blur filters are dynamically removed after the animation completes to free up GPU memory.
 - **Layout**: Negative margins in the Hero section are used to achieve a seamless overlap with the Navbar.
