@@ -17,7 +17,7 @@ export default function ScrollReveal({
     direction = "up",
     delay = 0,
     duration = 0.8,
-    distance = 50,
+    distance = 30,
     scale = 0.95,
 }: ScrollRevealProps) {
     const directions = {
@@ -31,16 +31,19 @@ export default function ScrollReveal({
         <motion.div
             initial={{
                 opacity: 0,
+                filter: "blur(10px)",
                 ...directions[direction],
                 scale: scale
             }}
             whileInView={{
                 opacity: 1,
+                filter: "blur(0px)",
                 x: 0,
                 y: 0,
                 scale: 1
             }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-50px" }}
+            style={{ willChange: "filter, opacity, transform" }}
             transition={{
                 duration: duration,
                 delay: delay,

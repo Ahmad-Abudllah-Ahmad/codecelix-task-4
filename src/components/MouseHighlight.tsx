@@ -27,7 +27,7 @@ export default function MouseHighlight() {
                 x: springX,
                 y: springY,
             }}
-            className="fixed top-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none -z-10 mix-blend-screen overflow-hidden"
+            className="fixed top-0 left-0 w-64 h-64 bg-primary/25 rounded-full blur-[100px] pointer-events-none -z-10 mix-blend-screen overflow-hidden"
         />
     );
 }

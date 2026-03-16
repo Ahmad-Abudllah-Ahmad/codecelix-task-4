@@ -23,22 +23,22 @@ export default function BlurText({ text, delay = 0, className = "", once = true 
     const child = {
         visible: {
             opacity: 1,
-            filter: "blur(0px)",
             y: 0,
+            filter: "blur(0px)",
             transition: {
                 type: "spring" as const,
-                damping: 12,
-                stiffness: 100,
+                damping: 15,
+                stiffness: 120,
             },
         },
         hidden: {
             opacity: 0,
-            filter: "blur(10px)",
             y: 20,
+            filter: "blur(8px)",
             transition: {
                 type: "spring" as const,
-                damping: 12,
-                stiffness: 100,
+                damping: 15,
+                stiffness: 120,
             },
         },
     };
@@ -55,7 +55,10 @@ export default function BlurText({ text, delay = 0, className = "", once = true 
             {words.map((word, index) => (
                 <motion.span
                     variants={child}
-                    style={{ marginRight: "0.25em" }}
+                    style={{ 
+                        marginRight: "0.25em",
+                        willChange: "filter, opacity, transform"
+                    }}
                     key={index}
                 >
                     {word}

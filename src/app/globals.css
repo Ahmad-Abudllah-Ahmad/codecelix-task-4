@@ -1,14 +1,45 @@
 @import "tailwindcss";
 
+@layer base {
+  @keyframes float-1 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.2; }
+    33% { transform: translate(150px, 80px) scale(1.4) rotate(5deg); opacity: 0.35; }
+    66% { transform: translate(-50px, 120px) scale(1.2) rotate(-5deg); opacity: 0.3; }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.2; }
+  }
+
+  @keyframes float-2 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.15; }
+    33% { transform: translate(-200px, 150px) scale(1.5) rotate(-10deg); opacity: 0.25; }
+    66% { transform: translate(100px, 50px) scale(1.3) rotate(10deg); opacity: 0.2; }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.15; }
+  }
+
+  @keyframes float-3 {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+    50% { transform: translate(120px, -120px) scale(1.3); opacity: 0.3; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  }
+
+  @keyframes blob-bounce {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.15; }
+    50% { transform: translateY(-60px) scale(1.1); opacity: 0.4; }
+  }
+
+  .animate-float-1 { animation: float-1 20s ease-in-out infinite; will-change: transform, opacity; transform: translateZ(0); }
+  .animate-float-2 { animation: float-2 25s ease-in-out infinite; will-change: transform, opacity; transform: translateZ(0); }
+  .animate-float-3 { animation: float-3 18s ease-in-out infinite; will-change: transform, opacity; transform: translateZ(0); }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  --background: #000000;
+  --foreground: #f5f5f7;
   --primary: #0070f3;
   --primary-foreground: #ffffff;
-  --accent: #f5f5f7;
-  --accent-foreground: #1d1d1f;
+  --accent: #1d1d1f;
+  --accent-foreground: #f5f5f7;
   --muted: #86868b;
-  --border: #e5e5e7;
+  --border: #333333;
   --radius: 0.75rem;
 }
 
@@ -27,79 +58,26 @@
   --radius-md: calc(var(--radius) - 4px);
   --radius-sm: calc(var(--radius) - 6px);
 
-  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #f5f5f7;
-    --primary: #0070f3;
-    --primary-foreground: #ffffff;
-    --accent: #1d1d1f;
-    --accent-foreground: #f5f5f7;
-    --muted: #86868b;
-    --border: #333333;
-  }
-}
-
-* {
-  border-color: var(--color-border);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Global Image & Media Styles */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-/* Fix for Next.js Image component when using 'fill' */
-span[style*="box-sizing:border-box;display:block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:absolute;top:0;left:0;bottom:0;right:0"] {
-  display: block !important;
-}
-
-/* Base Texture Overlay */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 50;
-  filter: contrast(120%) brightness(100%);
+  --font-inter: var(--font-inter);
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  contain: content;
 }
 
-.dark .glass {
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Rendering Isolation */
+.container-isolate {
+  contain: layout style;
+}
+
+/* GPU promotion */
+.gpu-layer {
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Lenis CSS */
@@ -122,4 +100,10 @@ html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Hardware acceleration for scroll components */
+[data-scroll], .parallax-element {
+  will-change: transform;
+  transform: translateZ(0);
 }

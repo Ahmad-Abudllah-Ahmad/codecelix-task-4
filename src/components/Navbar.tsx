@@ -10,7 +10,6 @@ const navLinks = [
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Portfolio", href: "/portfolio" },
-    { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -65,35 +64,28 @@ export default function Navbar() {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="absolute top-full left-0 w-full glass border-b md:hidden shadow-xl overflow-hidden"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute top-full left-0 w-full bg-background border-b md:hidden"
                     >
-                        <div className="flex flex-col p-8 gap-6">
-                            {navLinks.map((link, i) => (
-                                <motion.div
+                        <div className="flex flex-col p-6 gap-4">
+                            {navLinks.map((link) => (
+                                <Link
                                     key={link.name}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.05 }}
+                                    href={link.href}
+                                    className="text-lg font-medium py-2"
+                                    onClick={() => setIsOpen(false)}
                                 >
-                                    <Link
-                                        href={link.href}
-                                        className="text-2xl font-bold hover:text-primary transition-colors block"
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </motion.div>
+                                    {link.name}
+                                </Link>
                             ))}
                             <Link
                                 href="/contact"
-                                className="mt-4 px-8 py-4 bg-primary text-white text-center rounded-2xl font-bold shadow-lg shadow-primary/20"
+                                className="mt-4 px-6 py-3 bg-primary text-white text-center rounded-xl font-semibold"
                                 onClick={() => setIsOpen(false)}
                             >
-                                Get in touch
+                                Contact Us
                             </Link>
                         </div>
                     </motion.div>

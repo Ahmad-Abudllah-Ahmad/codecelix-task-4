@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import BlurText from "./BlurText";
+import Parallax from "./Parallax";
 
 const testimonials = [
     {
@@ -31,17 +31,19 @@ export default function Testimonials() {
     return (
         <section className="py-24 px-6 relative overflow-hidden">
             <div className="container mx-auto">
-                <div className="text-center mb-16 space-y-4">
+                <div className="text-center mb-20 space-y-4">
                     <ScrollReveal direction="down">
                         <h2 className="text-sm font-bold tracking-widest text-primary uppercase">Testimonials</h2>
                     </ScrollReveal>
-                    <BlurText
-                        text="What our clients say."
-                        className="text-4xl font-bold justify-center"
-                    />
+                    <Parallax offset={30}>
+                        <BlurText
+                            text="What our clients say."
+                            className="text-4xl md:text-6xl font-bold justify-center tracking-tight"
+                        />
+                    </Parallax>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container-isolate">
                     {testimonials.map((item, i) => (
                         <ScrollReveal
                             key={i}
@@ -49,21 +51,26 @@ export default function Testimonials() {
                             scale={0.8}
                             distance={40}
                         >
-                            <div className="p-10 rounded-3xl bg-accent/30 dark:bg-white/[0.01] border relative hover:border-primary/30 transition-colors group h-full flex flex-col justify-between">
-                                <Quote className="text-primary/20 absolute top-8 right-8 w-12 h-12 group-hover:text-primary/40 transition-colors" />
-                                <p className="text-lg font-medium leading-relaxed mb-8 relative z-10">
-                                    "{item.text}"
-                                </p>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 group-hover:scale-110 transition-transform relative">
-                                        <Image src={item.image} alt={item.name} fill className="object-cover" sizes="48px" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold">{item.name}</h4>
-                                        <p className="text-sm text-muted-foreground">{item.role}</p>
+                            <Parallax offset={20 + i * 10} className="h-full">
+                                <div className="p-10 rounded-3xl bg-accent/30 dark:bg-white/[0.01] border relative hover:border-primary/30 transition-colors group h-full flex flex-col justify-between">
+                                    <Quote className="text-primary/20 absolute top-8 right-8 w-12 h-12 group-hover:text-primary/40 transition-colors" />
+                                    <Parallax offset={5}>
+                                        <p className="text-lg font-medium leading-relaxed mb-8 relative z-10">
+                                            &quot;{item.text}&quot;
+                                        </p>
+                                    </Parallax>
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 group-hover:scale-110 transition-transform">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold">{item.name}</h4>
+                                            <p className="text-sm text-muted-foreground">{item.role}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Parallax>
                         </ScrollReveal>
                     ))}
                 </div>

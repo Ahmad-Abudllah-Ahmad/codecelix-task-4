@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Code, Globe, Cpu, Palette, Megaphone, Smartphone } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import BlurText from "./BlurText";
+import Parallax from "./Parallax";
 
 const services = [
     {
@@ -48,24 +49,28 @@ export default function ServicesSummary() {
     return (
         <section className="py-24 px-6 bg-accent/50 dark:bg-white/[0.02]">
             <div className="container mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-                    <div className="space-y-4 max-w-xl text-left">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20">
+                    <div className="space-y-4 max-w-2xl text-left">
                         <ScrollReveal direction="down">
                             <h2 className="text-sm font-bold tracking-widest text-primary uppercase">Our Expertise</h2>
                         </ScrollReveal>
-                        <BlurText
-                            text="We provide comprehensive digital solutions."
-                            className="text-4xl md:text-5xl font-bold tracking-tight text-left"
-                        />
+                        <Parallax offset={20}>
+                            <BlurText
+                                text="We provide comprehensive digital solutions."
+                                className="text-4xl md:text-6xl font-bold tracking-tight text-left leading-tight"
+                            />
+                        </Parallax>
                     </div>
                     <ScrollReveal direction="left" delay={0.3}>
-                        <p className="text-muted-foreground max-w-sm mb-2 font-medium">
-                            From strategy to execution, we take care of all your digital needs under one roof.
-                        </p>
+                        <Parallax offset={10}>
+                            <p className="text-muted-foreground max-w-sm mb-2 font-medium">
+                                From strategy to execution, we take care of all your digital needs under one roof.
+                            </p>
+                        </Parallax>
                     </ScrollReveal>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container-isolate">
                     {services.map((service, i) => (
                         <ScrollReveal
                             key={i}
@@ -73,15 +78,17 @@ export default function ServicesSummary() {
                             delay={i * 0.1}
                             distance={30}
                         >
-                            <div className="p-8 rounded-2xl bg-background border hover:border-primary/50 transition-all group h-full">
-                                <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110">
-                                    {service.icon}
+                            <Parallax offset={15 + i * 5} className="h-full">
+                                <div className="p-8 rounded-2xl bg-background border hover:border-primary/50 transition-all group h-full">
+                                    <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110">
+                                        {service.icon}
+                                    </div>
+                                    <h4 className="text-xl font-bold mb-4">{service.title}</h4>
+                                    <p className="text-muted-foreground font-medium leading-relaxed">
+                                        {service.desc}
+                                    </p>
                                 </div>
-                                <h4 className="text-xl font-bold mb-4">{service.title}</h4>
-                                <p className="text-muted-foreground font-medium leading-relaxed">
-                                    {service.desc}
-                                </p>
-                            </div>
+                            </Parallax>
                         </ScrollReveal>
                     ))}
                 </div>

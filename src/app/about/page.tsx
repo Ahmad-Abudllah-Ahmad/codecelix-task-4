@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, Award, Users, Rocket } from "lucide-react";
-import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import BlurText from "@/components/BlurText";
 
@@ -58,12 +57,10 @@ export default function AboutPage() {
                         </div>
                         <ScrollReveal direction="left" distance={100} delay={0.2}>
                             <div className="relative aspect-square rounded-3xl overflow-hidden group">
-                                <Image
+                                <img
                                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
                                     alt="Our Team"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
+                                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity" />
                             </div>
@@ -122,12 +119,10 @@ export default function AboutPage() {
                             >
                                 <div className="group relative">
                                     <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-accent relative">
-                                        <Image
+                                        <img
                                             src={member.image}
                                             alt={member.name}
-                                            fill
-                                            className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                                            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                                         />
                                         <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity">
                                             <h4 className="font-bold text-lg">{member.name}</h4>
